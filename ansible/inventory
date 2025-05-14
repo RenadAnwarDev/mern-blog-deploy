@@ -1,0 +1,2 @@
+[backend]
+16.171.225.36 ansible_user=ubuntu ansible_ssh_private_key_file=~/Downloads/Renad-key-2025.pem
