@@ -1,0 +1,46 @@
+---
+- name: Install curl
+  apt:
+    name: curl
+    state: present
+    update_cache: yes
+
+- name: Install Node.js 18.x
+  shell: curl -fsSL https://deb.nodesource.com/setup_18.x | bash -
+  args:
+    executable: /bin/bash
+
+- name: Install Node and npm
+  apt:
+    name: nodejs
+    state: present
+
+- name: Install PM2 globally
+  npm:
+    name: pm2
+    global: yes
+
+- name: Clone blog app repo
+  git:
+    repo: https://github.com/cw-barry/blog-app-MERN.git
+    dest: ~/blog-app
+
+- name: Create backend .env file
+  template:
+    src: env.j2
+    dest: ~/blog-app/backend/.env
+
+- name: Install backend dependencies
+  shell: |
+    cd ~/blog-app/backend
+    npm install
+  args:
+    executable: /bin/bash
+
+- name: Start backend with PM2
+  shell: |
+    cd ~/blog-app/backend
+    pm2 start index.js --name "blog-backend"
+    pm2 save
+  args:
+    executable: /bin/bash
