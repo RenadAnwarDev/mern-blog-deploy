@@ -46,6 +46,14 @@ The goal was to fully automate the deployment of both frontend and backend servi
 
 ---
 
+## Architecture Diagram
+
+> This diagram represents the high-level architecture of the MERN Blog deployment on AWS:
+
+![Architecture](screenshots/mern-deployment-architecture.JPG)
+
+---
+
 ## Screenshots
 
 > Located in `/screenshots/` folder:
